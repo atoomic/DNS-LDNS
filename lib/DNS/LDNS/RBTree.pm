@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -35,7 +35,7 @@ DNS::LDNS::RBTree - Tree of DNSSecName nodes
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   rbnode = rbtree->first
   rbnode = rbtree->last

@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -52,7 +52,7 @@ DNS::LDNS::DNSSecDataChain - DNSSec data chain element
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   chain = new DNS::LDNS::DNSSecDataChain
   chain->print(fp)

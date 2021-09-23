@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -56,7 +56,7 @@ DNS::LDNS::DNSSecRRSets - Linked list of rrsets in a dnssec zone
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   rrs = rrsets->rrs
   rrs = rrsets->signatures

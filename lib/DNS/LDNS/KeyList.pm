@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS ':all';
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -44,7 +44,7 @@ DNS::LDNS::KeyList - Linked list of dnssec keys
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   my l = new DNS::LDNS::KeyList
   l->set_use(bool)

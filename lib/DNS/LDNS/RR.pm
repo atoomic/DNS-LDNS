@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS ':all';
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -12,7 +12,7 @@ sub new {
     my $class = shift;
 
     my $rr;
-    my $status = &LDNS_STATUS_OK;
+    my $status = &DNS::LDNS::LDNS_STATUS_OK;
 
     if (scalar(@_) == 0) {
 	$rr = _new;
@@ -37,7 +37,7 @@ sub new {
 	    my $file = $args{file};
 	    if ($args{filename}) {
 		unless (open FILE, $args{filename}) {
-		    $DNS::LDNS::last_status = &LDNS_STATUS_FILE_ERR;
+		    $DNS::LDNS::last_status = &DNS::LDNS::LDNS_STATUS_FILE_ERR;
 		    $DNS::LDNS::line_nr = 0;
 		    return;
 		}
@@ -61,14 +61,14 @@ sub new {
 	    $rr = _new_from_type($args{type});
 	    if ($args{owner}) {
 		$rr->set_owner(ref $args{owner} ? $args{owner} : 
-		    new DNS::LDNS::RData(&LDNS_RDF_TYPE_DNAME, $args{owner}));
+		    new DNS::LDNS::RData(&DNS::LDNS::LDNS_RDF_TYPE_DNAME, $args{owner}));
 	    }
 	    $rr->set_ttl($args{ttl}) if ($args{ttl});
 	    $rr->set_class($args{class}) if ($args{class});
 
 	    if ($args{rdata}) {
 		if (!$rr->set_rdata(@{$args{rdata}})) {
-		    $DNS::LDNS::last_status = &LDNS_STATUS_SYNTAX_RDATA_ERR;
+		    $DNS::LDNS::last_status = &DNS::LDNS::LDNS_STATUS_SYNTAX_RDATA_ERR;
 		    return;
 		}
 	    }
@@ -110,7 +110,7 @@ sub set_rdata {
 
     if (scalar @rdata != $self->rd_count) {
 	# Hopefully this is a proper error to return here...
-	$DNS::LDNS::last_status = LDNS_STATUS_SYNTAX_RDATA_ERR;
+	$DNS::LDNS::last_status = &DNS::LDNS::LDNS_STATUS_SYNTAX_RDATA_ERR;
 	return;
     }
     my $i = 0;
@@ -347,7 +347,7 @@ sub verify_denial_nsec3_match {
     my $status;
     my $match = _verify_denial_nsec3_match($self, $nsecs, $rrsigs, $packet_rcode, $packet_qtype, $packet_nodata, $status);
     $DNS::LDNS::last_status = $status;
-    if ($status != &LDNS_STATUS_OK) {
+    if ($status != &DNS::LDNS::LDNS_STATUS_OK) {
 	return;
     }
 
@@ -368,7 +368,7 @@ DNS::LDNS::RR - Resource record
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   my rr = new DNS::LDNS::RR('mylabel 3600 IN A 168.10.10.10')
   my rr = new DNS::LDNS::RR(

@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -117,7 +117,7 @@ DNS::LDNS::RRList - List of rrs
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   my l = new DNS::LDNS::RRList
   my l = new DNS::LDNS::RRList(hosts_file => \*FILE)
