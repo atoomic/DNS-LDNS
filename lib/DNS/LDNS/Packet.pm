@@ -144,9 +144,9 @@ DNS::LDNS::Packet - DNS packet
 
   use DNS::LDNS ':all'
 
-  my pkt = new DNS::LDNS::Packet(name => rdata, type => LDNS_RR_TYPE_...,
+  my pkt = DNS::LDNS::Packet->new(name => rdata, type => LDNS_RR_TYPE_...,
     class => LDNS_RR_CLASS_..., flags => ...)
-  my pkt = new DNS::LDNS::Packet
+  my pkt = DNS::LDNS::Packet->new
 
   pkt2 = pkt->clone
 

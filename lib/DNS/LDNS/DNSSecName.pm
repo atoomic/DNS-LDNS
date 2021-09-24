@@ -78,7 +78,7 @@ DNS::LDNS::DNSSecName - Dname with rrsets in a dnssec zone
 
   use LDNS ':all'
 
-  my name = new DNS::LDNS::DNSSecName
+  my name = DNS::LDNS::DNSSecName->new
 
   rdata = name->name
   name->set_name(rdata)

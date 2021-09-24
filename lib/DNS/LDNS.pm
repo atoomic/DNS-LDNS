@@ -725,29 +725,29 @@ DNS::LDNS - Perl extension for the ldns library
 DNS::LDNS is a perl OO-wrapper for the ldns library. A complete list
 of object methods is found in the perldoc for each of the individual
 classes. You may also read the documentation of the ldns library
-(http://www.nlnetlabs.nl/projects/ldns). 
+(http://www.nlnetlabs.nl/projects/ldns).
 
 =head2 Brief examples of usage
 
   use DNS::LDNS ':all';
 
-  my $z = new DNS::LDNS::Zone(filename => '/path/to/myzone');
+  my $z = DNS::LDNS::Zone->new(filename => '/path/to/myzone');
   print DNS::LDNS::last_error;
-  my $rr = new DNS::LDNS::RR('mylabel 3600 IN A 168.10.10.10');
+  my $rr = DNS::LDNS::RR->new('mylabel 3600 IN A 168.10.10.10');
   print $z->soa->to_string;
   my $rrlist = $z->rrs->push($rr);
   print $z->to_string;
 
-  my $kl = new DNS::LDNS::KeyList;
-  $kl->push(new DNS::LDNS::Key(filename => 'key');
+  my $kl = DNS::LDNS::KeyList->new;
+  $kl->push(DNS::LDNS::Key->new(filename => 'key');
   $kl->key(0)->set_pubkey_owner(
-      new DNS::LDNS::RData(LDNS_RDF_TYPE_DNAME, 'myzone.org'));
+      DNS::LDNS::RData->new(LDNS_RDF_TYPE_DNAME, 'myzone.org'));
   my $signedz = $z->sign($kl);
   print $signedz->to_string;
 
-  my $r = new DNS::LDNS::Resolver(filename => '/my/resolv.conf');
+  my $r = DNS::LDNS::Resolver->new(filename => '/my/resolv.conf');
   my $p = $r->send(
-    new DNS::LDNS::RData(LDNS_RDF_TYPE_DNAME, 'www.google.com'), 
+    DNS::LDNS::RData->new(LDNS_RDF_TYPE_DNAME, 'www.google.com'),
     LDNS_RR_TYPE_A, LDNS_RR_CLASS_IN, LDNS_RD);
   print $p->answer->to_string;
   print $p->authority->to_string;
@@ -864,7 +864,7 @@ zone in a more structured way.
   rr = dnssec_create_nsec(from, to, type)
   rr = dnssec_create_nsec3(from, to, algorithm, flags, iterations, salt)
   rr = create_nsec(current, next, rrs)
-  rr = create_nsec3(cur_owner, cur_zone, algorithm, flags, 
+  rr = create_nsec3(cur_owner, cur_zone, algorithm, flags,
                     iterations, salt, empty_nonterminals)
   algo = signing_algorithm_by_name(name)
   bool = key_algorithm_supported(algorithm)
@@ -884,7 +884,7 @@ really want.
 
 DNS::LDNS::Zone::rrs returns a reference to the DNS::LDNS::RRList
 within  the zone, so if you make changes to the RRList you also
-changes the Zone  object. 
+changes the Zone  object.
 
 DNS::LDNS::RRList::push(rr) clones the rr, then pushes the cloned rr
 to the  list. Changing the rr afterwards will not change the list.
@@ -903,10 +903,10 @@ The purpose for writing this wrapper class has been to be able to
 process zone file data with good time performance. Data checking and
 error handling is a bit sparse.
 
-Most constructors will update the DNS::LDNS::last_status variable if 
-they fail (return undef). Wrapper methods to ldns functions which would 
-return a status will update the static DNS::LDNS::last_status variable. 
-Most methods do not return a status and will not reset this variable 
+Most constructors will update the DNS::LDNS::last_status variable if
+they fail (return undef). Wrapper methods to ldns functions which would
+return a status will update the static DNS::LDNS::last_status variable.
+Most methods do not return a status and will not reset this variable
 even though they succeeds.
 
 =head2 EXPORT
@@ -1276,8 +1276,8 @@ None by default.
 
 =head1 BUGS
 
-This package is still in the beta stage of development. There no known bugs, 
-although parts of the code has not yet been very well tested. Bugreports will 
+This package is still in the beta stage of development. There no known bugs,
+although parts of the code has not yet been very well tested. Bugreports will
 be greatly appreciated.
 
 =head1 SEE ALSO

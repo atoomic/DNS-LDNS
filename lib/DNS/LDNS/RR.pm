@@ -61,7 +61,7 @@ sub new {
 	    $rr = _new_from_type($args{type});
 	    if ($args{owner}) {
 		$rr->set_owner(ref $args{owner} ? $args{owner} : 
-		    new DNS::LDNS::RData(&LDNS_RDF_TYPE_DNAME, $args{owner}));
+		    DNS::LDNS::RData->new(&LDNS_RDF_TYPE_DNAME, $args{owner}));
 	    }
 	    $rr->set_ttl($args{ttl}) if ($args{ttl});
 	    $rr->set_class($args{class}) if ($args{class});
@@ -370,30 +370,30 @@ DNS::LDNS::RR - Resource record
 
   use DNS::LDNS ':all'
 
-  my rr = new DNS::LDNS::RR('mylabel 3600 IN A 168.10.10.10')
-  my rr = new DNS::LDNS::RR(
+  my rr = DNS::LDNS::RR->new('mylabel 3600 IN A 168.10.10.10')
+  my rr = DNS::LDNS::RR->new(
     str => 'mylabel 3600 IN A 168.10.10.10',
     default_ttl => 3600,     # optional
     origin => $origin_rdata, # optional
     prev => \$prev_rdata,    # optional
   )
-  my rr = new DNS::LDNS::RR(
+  my rr = DNS::LDNS::RR->new(
     filename => '/path/to/rr',
     default_ttl => \$ttl,     # optional
     origin => \$origin_rdata, # optional
     prev => \$prev_rdata)     # optional
-  my rr = new DNS::LDNS::RR(
+  my rr = DNS::LDNS::RR->new(
     file => \*FILE,
     default_ttl => \$ttl,     # optional
     origin => \$origin_rdata, # optional
     prev => \$prev_rdata)     # optional
-  my rr = new DNS::LDNS::RR(
+  my rr = DNS::LDNS::RR->new(
     type => LDNS_RR_TYPE_A,
-    rdata => [new DNS::LDNS::RData(...), new DNS::LDNS::RData(...), ...],
+    rdata => [DNS::LDNS::RData->new(...), DNS::LDNS::RData->new(...), ...],
     class => LDNS_RR_CLASS_IN, # optional
     ttl => 3600, # optional
-    owner => new DNS::LDNS::RData(LDNS_RDF_TYPE_DNAME, 'mylabel'), # optional)
-  my rr = new DNS::LDNS::RR
+    owner => DNS::LDNS::RData->new(LDNS_RDF_TYPE_DNAME, 'mylabel'), # optional)
+  my rr = DNS::LDNS::RR->new
 
   rr2 = rr->clone
 

@@ -229,9 +229,9 @@ DNS::LDNS::Resolver - DNS resolver
 
   use DNS::LDNS ':all'
 
-  my r = new DNS::LDNS::Resolver(filename => '/my/resolv.conf')
-  my r = new DNS::LDNS::Resolver(file => \*FILE)
-  my r = new DNS::LDNS::Resolver
+  my r = DNS::LDNS::Resolver->new(filename => '/my/resolv.conf')
+  my r = DNS::LDNS::Resolver->new(file => \*FILE)
+  my r = DNS::LDNS::Resolver->new
 
   bool = r->dnssec
   r->set_dnssec(bool)

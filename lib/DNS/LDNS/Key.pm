@@ -71,9 +71,9 @@ DNS::LDNS::Key - DNSSec private key
 
   use DNS::LDNS ':all'
 
-  key = new DNS::LDNS::Key
-  key = new DNS::LDNS::Key(file => \*FILE)
-  key = new DNS::LDNS::Key(filename => 'keyfile')
+  key = DNS::LDNS::Key->new
+  key = DNS::LDNS::Key->new(file => \*FILE)
+  key = DNS::LDNS::Key->new(filename => 'keyfile')
 
   str = key->to_string
   key->print(\*OUTPUT)

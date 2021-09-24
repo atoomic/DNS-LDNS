@@ -54,7 +54,7 @@ DNS::LDNS::DNSSecDataChain - DNSSec data chain element
 
   use DNS::LDNS ':all'
 
-  chain = new DNS::LDNS::DNSSecDataChain
+  chain = DNS::LDNS::DNSSecDataChain->new
   chain->print(fp)
   chain->derive_trust_tree(rr)
   chain->derive_trust_tree_time(rr, checktime)
