@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -40,7 +40,7 @@ DNS::LDNS::RData - Rdata field or a dname in an rr
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   my rd = new DNS::LDNS::RData(rdf_type, str)
   rd2 = rd->clone

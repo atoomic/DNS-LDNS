@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -45,7 +45,7 @@ DNS::LDNS::RBNode - Node in the RBTree
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   node2 = node->next
   node2 = node->next_nonglue

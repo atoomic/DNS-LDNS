@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS ':all';
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -14,12 +14,12 @@ sub new {
     my $key;
 
     if ($args{filename} or $args{file}) {
-	my $status = &LDNS_STATUS_OK;
+	my $status = &DNS::LDNS::LDNS_STATUS_OK;
 	my $line_nr = 0;
 	my $file = $args{file};
 	if ($args{filename}) {
 	    unless (open FILE, $args{filename}) {
-		$DNS::LDNS::last_status = &LDNS_STATUS_FILE_ERR;
+		$DNS::LDNS::last_status = &DNS::LDNS::LDNS_STATUS_FILE_ERR;
 		return;
 	    }
 	    $file = \*FILE;
@@ -69,7 +69,7 @@ DNS::LDNS::Key - DNSSec private key
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   key = new DNS::LDNS::Key
   key = new DNS::LDNS::Key(file => \*FILE)

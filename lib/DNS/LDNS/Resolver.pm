@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS ':all';
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -12,11 +12,11 @@ sub new {
     my ($class, %args) = @_;
     
     my $file;
-    my $status = &LDNS_STATUS_OK;
+    my $status = &DNS::LDNS::LDNS_STATUS_OK;
 
     if ($args{filename}) {
 	unless (open FILE, $args{filename}) {
-	    $DNS::LDNS::last_status = &LDNS_STATUS_FILE_ERR;
+	    $DNS::LDNS::last_status = &DNS::LDNS::LDNS_STATUS_FILE_ERR;
 	    $DNS::LDNS::line_nr = 0;
 	    return;
 	}
@@ -166,10 +166,10 @@ sub fetch_valid_domain_keys_time {
 sub prepare_query_pkt {
     my ($self, $rdata, $type, $class, $flags) = @_;
 
-    my $s = &LDNS_STATUS_OK;
+    my $s = &DNS::LDNS::LDNS_STATUS_OK;
     my $qry = _prepare_query_pkt($self, $rdata, $type, $class, $flags, $s);
     $DNS::LDNS::last_status = $s;
-    if ($s != LDNS_STATUS_OK) {
+    if ($s != &DNS::LDNS::LDNS_STATUS_OK) {
 	return;
     }
     return $qry;
@@ -178,10 +178,10 @@ sub prepare_query_pkt {
 sub send {
     my ($self, $rdata, $type, $class, $flags) = @_;
 
-    my $s = &LDNS_STATUS_OK;
+    my $s = &DNS::LDNS::LDNS_STATUS_OK;
     my $ans = _send($self, $rdata, $type, $class, $flags, $s);
     $DNS::LDNS::last_status = $s;
-    if ($s != LDNS_STATUS_OK) {
+    if ($s != &DNS::LDNS::LDNS_STATUS_OK) {
 	return;
     }
     return $ans;
@@ -193,7 +193,7 @@ sub send_pkt {
     my $s = &LDNS_STATUS_OK;
     my $ans = _send_pkt($self, $qry, $s);
     $DNS::LDNS::last_status = $s;
-    if ($s != LDNS_STATUS_OK) {
+    if ($s != &DNS::LDNS::LDNS_STATUS_OK) {
 	return;
     }
     return $ans;
@@ -227,7 +227,7 @@ DNS::LDNS::Resolver - DNS resolver
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   my r = new DNS::LDNS::Resolver(filename => '/my/resolv.conf')
   my r = new DNS::LDNS::Resolver(file => \*FILE)

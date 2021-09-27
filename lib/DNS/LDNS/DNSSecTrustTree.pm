@@ -4,7 +4,7 @@ use 5.008008;
 use strict;
 use warnings;
 
-use DNS::LDNS;
+use DNS::LDNS ();
 
 our $VERSION = '0.62';
 
@@ -64,7 +64,7 @@ DNS::LDNS::DNSSecTrustTree - Trust tree from signed RR to trust anchors
 
 =head1 SYNOPSIS
 
-  use DNS::LDNS ':all'
+  use DNS::LDNS ();
 
   tree = new DNS::LDNS::DNSSecTrustTree
   tree->print(fp)
