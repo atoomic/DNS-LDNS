@@ -8,3 +8,7 @@ blib/
 pm_to_blib
 MANIFEST
 .DS_Store
+*.c
+*.o
+*.inc
+*.bs
