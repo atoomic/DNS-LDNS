@@ -46,7 +46,7 @@ DNS::LDNS::KeyList - Linked list of dnssec keys
 
   use DNS::LDNS ':all'
 
-  my l = new DNS::LDNS::KeyList
+  my l = DNS::LDNS::KeyList->new
   l->set_use(bool)
   l->push(@keys)
   key = l->pop

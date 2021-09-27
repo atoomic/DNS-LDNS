@@ -127,17 +127,17 @@ DNS::LDNS::DNSSecZone - Zone with dnssec data
 
   use DNS::LDNS ':all'
 
-  my z = new DNS::LDNS::DNSSecZone(
+  my z = DNS::LDNS::DNSSecZone->new(
     filename => '/path/to/myzone',
-    origin => new DNS::LDNS::RData(LDNS_RDF_TYPE_DNAME, 'myzone'), #optional
+    origin => DNS::LDNS::RData->new(LDNS_RDF_TYPE_DNAME, 'myzone'), #optional
     ttl => 3600, #optional
     class => LDNS_RR_CLASS_, #optional
   )
-  my z = new DNS::LDNS::DNSSecZone(
+  my z = DNS::LDNS::DNSSecZone->new(
     file => \*FILE,
     origin => ..., ttl => ..., class => ...
   )
-  my z = new DNS::LDNS::DNSSecZone
+  my z = DNS::LDNS::DNSSecZone->new
 
   rr = z->soa
   rbtree = z->names

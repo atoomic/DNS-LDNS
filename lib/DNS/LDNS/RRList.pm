@@ -55,7 +55,7 @@ sub push_list {
 
 sub verify {
     my ($self, $sig, $keys) = @_;
-    my $goodkeys = new DNS::LDNS::RRList;
+    my $goodkeys = DNS::LDNS::RRList->new;
     my $s = _verify($self, $sig, $keys, $goodkeys);
     $DNS::LDNS::last_status = $s;
     return wantarray ? ($s, $goodkeys) : $s;
@@ -63,7 +63,7 @@ sub verify {
 
 sub verify_time {
     my ($self, $sig, $keys, $checktime) = @_;
-    my $goodkeys = new DNS::LDNS::RRList;
+    my $goodkeys = DNS::LDNS::RRList->new;
     my $s = _verify_time($self, $sig, $keys, $checktime, $goodkeys);
     $DNS::LDNS::last_status = $s;
     return wantarray ? ($s, $goodkeys) : $s;
@@ -71,7 +71,7 @@ sub verify_time {
 
 sub verify_notime {
     my ($self, $sig, $keys) = @_;
-    my $goodkeys = new DNS::LDNS::RRList;
+    my $goodkeys = DNS::LDNS::RRList->new;
     my $s = _verify_notime($self, $sig, $keys, $goodkeys);
     $DNS::LDNS::last_status = $s;
     return wantarray ? ($s, $goodkeys) : $s;
@@ -79,7 +79,7 @@ sub verify_notime {
 
 sub verify_rrsig_keylist {
     my ($self, $sig, $keys) = @_;
-    my $goodkeys = new DNS::LDNS::RRList;
+    my $goodkeys = DNS::LDNS::RRList->new;
     my $s = _verify_rrsig_keylist($self, $sig, $keys, $goodkeys);
     $DNS::LDNS::last_status = $s;
     return wantarray ? ($s, $goodkeys) : $s;
@@ -87,7 +87,7 @@ sub verify_rrsig_keylist {
 
 sub verify_rrsig_keylist_notime {
     my ($self, $sig, $keys, $check_time) = @_;
-    my $goodkeys = new DNS::LDNS::RRList;
+    my $goodkeys = DNS::LDNS::RRList->new;
     my $s = _verify_rrsig_keylist_notime($self, $sig, $keys, $goodkeys);
     $DNS::LDNS::last_status = $s;
     return wantarray ? ($s, $goodkeys) : $s;
@@ -119,9 +119,9 @@ DNS::LDNS::RRList - List of rrs
 
   use DNS::LDNS ':all'
 
-  my l = new DNS::LDNS::RRList
-  my l = new DNS::LDNS::RRList(hosts_file => \*FILE)
-  my l = new DNS::LDNS::RRList(hosts_filename => fname)
+  my l = DNS::LDNS::RRList->new
+  my l = DNS::LDNS::RRList->new(hosts_file => \*FILE)
+  my l = DNS::LDNS::RRList->new(hosts_filename => fname)
   my l2 = l->clone
 
   l->to_string

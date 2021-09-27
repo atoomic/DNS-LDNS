@@ -42,7 +42,7 @@ DNS::LDNS::RData - Rdata field or a dname in an rr
 
   use DNS::LDNS ':all'
 
-  my rd = new DNS::LDNS::RData(rdf_type, str)
+  my rd = DNS::LDNS::RData->new(rdf_type, str)
   rd2 = rd->clone
 
   rdf_type = rd->type

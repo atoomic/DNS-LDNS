@@ -66,7 +66,7 @@ DNS::LDNS::DNSSecTrustTree - Trust tree from signed RR to trust anchors
 
   use DNS::LDNS ':all'
 
-  tree = new DNS::LDNS::DNSSecTrustTree
+  tree = DNS::LDNS::DNSSecTrustTree->new
   tree->print(fp)
   d = tree->depth
   status = tree->add_parent(parent, sig, parent_status)

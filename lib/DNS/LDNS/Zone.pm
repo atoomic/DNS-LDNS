@@ -98,17 +98,17 @@ DNS::LDNS::Zone - Parsed zonefile
 
   use DNS::LDNS ':all'
 
-  my z = new DNS::LDNS::Zone(
+  my z = DNS::LDNS::Zone->new(
     filename => '/path/to/myzone',
-    origin => new DNS::LDNS::RData(LDNS_RDF_TYPE_DNAME, 'myzone'), #optional
+    origin => DNS::LDNS::RData->new(LDNS_RDF_TYPE_DNAME, 'myzone'), #optional
     default_ttl => 3600, #optional
     class => LDNS_RR_CLASS_IN, #optional
   )
-  my z = new DNS::LDNS::Zone(
+  my z = DNS::LDNS::Zone->new(
     file => \*FILE,
     origin => ..., default_ttl => ..., class => ...
   )
-  my z = new DNS::LDNS::Zone
+  my z = DNS::LDNS::Zone->new
 
   z->to_string
   z->print(\*FILE)
